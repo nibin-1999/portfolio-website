@@ -2,6 +2,20 @@ const hamburger = document.querySelector(".hamburger");
 const mobileMenu = document.querySelector(".mobile-menu");
 const cancel = document.querySelector(".cancel");
 const mobileLinks = document.querySelectorAll(".mobile-menu .nav-link a");
+const contactLinks = document.querySelectorAll(".contact-btn a");
+
+// Exposed handler that runs when Contact is clicked (desktop or mobile)
+function handleContactClick(event) {
+  if (event && typeof event.preventDefault === "function") {
+    event.preventDefault();
+  }
+  // Replace this with your desired action (e.g., open modal, scroll, mailto)
+  // Example placeholder:
+  console.log("Contact button clicked");
+  alert("Contact button clicked");
+}
+// Make available globally in case you want to call it inline
+window.handleContactClick = handleContactClick;
 
 hamburger.addEventListener("click", () => {
   mobileMenu.style.transform = "translateY(0)";
@@ -27,6 +41,11 @@ mobileLinks.forEach((link) => {
     mobileMenu.style.transform = "translateY(-100%)";
     hamburger.style.display = "block";
   });
+});
+
+// Wire up Contact links (both desktop and mobile)
+contactLinks.forEach((link) => {
+  link.addEventListener("click", handleContactClick);
 });
 
 function handleResize() {
